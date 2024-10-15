@@ -1,10 +1,10 @@
 import * as applicationService from '../services/applicationService.js';
 
-// 신청 생성 함수 (일반 유저 접근 가능)
+// 비즈니스 로직을 서비스로 분리
 export const createApplication = async (req, res, next) => {
   try {
     const { challengeId } = req.params;
-    const userId = req.user.id; // 인증 미들웨어에서 설정된 사용자 정보 사용
+    const userId = req.user.id;
 
     const application = await applicationService.createApplication(
       userId,
