@@ -1,41 +1,53 @@
-// import { PrismaClient } from '@prisma/client';
+import prisma from '../lib/prisma.js';
 
-// const prisma = new PrismaClient();
-
-// // 신청 생성 서비스 함수
-// export const createApplication = async ({ userId, challengeId }) => {
-//   return prisma.application.create({
-//     data: {
-//       userId,
-//       challengeId,
-//     },
-//   });
-// };
-
+// 신청 목록 조회
 export const getApplications = async () => {
   return prisma.application.findMany({
     include: {
-      user: true,
-      challenge: true,
+      challenge: {
+        select: {
+          id: true,
+          docType: true,
+          field: true,
+          title: true,
+          maxParticipants: true,
+          deadline: true,
+        },
+      },
+      user: { select: { nickname: true } }, // 어드민의 닉네임 포함
+    },
+    select: {
+      id: true,
+      createdAt: true,
+      status: true,
+      isCancelled: true, // 취소 신청을 하기 위한 필드
+      message: true, // 삭제/거절 사유
+      updatedAt: true, // 상태 변경 시간
     },
   });
 };
 
-// 신청 삭제 서비스 함수
-export const deleteApplication = async (applicationId) => {
-  return prisma.application.delete({
-    where: { id: applicationId },
-  });
-};
-
-// 신청 업데이트 서비스 함수
+// 신청 상태 업데이트 (승인 및 거절 포함)
 export const updateApplication = async (applicationId, status, message) => {
   return prisma.application.update({
     where: { id: applicationId },
     data: {
       status,
-      message,
-      updatedAt: status === 'REJECTED' ? new Date() : null,
+      message, // 거절 사유
+      updatedAt: new Date(), // 상태 변경 시간
     },
   });
 };
+
+// 신청 삭제 (관리자)
+export const deleteApplication = async (applicationId, message) => {
+  return prisma.application.update({
+    where: { id: applicationId },
+    data: {
+      status: 'DELETED',
+      message, // 삭제 사유
+      updatedAt: new Date(),
+    },
+  });
+};
+
