@@ -1,5 +1,4 @@
 import swaggerJsDoc from 'swagger-jsdoc';
-import swaggerUi from 'swagger-ui-express';
 
 const swaggerOptions = {
   swaggerDefinition: {
@@ -9,11 +8,18 @@ const swaggerOptions = {
       version: '1.0.0',
       description: '독스루 백엔드 API 명세입니다',
     },
+
     servers: [
       {
-        url: process.env.BASE_URL || 'http://localhost:3001', // 환경변수로 관리
+        url: `http://localhost:3000`,
+        description: '로컬 서버',
+      },
+      {
+        url: `process.env.BASE_URL`,
+        description: '배포 환경 HTTPS 서버',
       },
     ],
+
     components: {
       securitySchemes: {
         bearerAuth: {
@@ -24,9 +30,7 @@ const swaggerOptions = {
       },
     },
   },
-  apis: ['./routes/*.js'], // Swagger 주석이 포함된 파일의 경로
+  apis: ['./src/routes/*.js'], // Swagger 주석이 포함된 파일의 경로
 };
 
-const swaggerDocs = swaggerJsDoc(swaggerOptions);
-
-export { swaggerDocs };
+export const swaggerDocs = swaggerJsDoc(swaggerOptions);
