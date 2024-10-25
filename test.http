@@ -63,14 +63,14 @@ Content-Type: application/json
 
 
 ### 챌린지 참여하기
-POST http://localhost:3001/api/challenges/18/participations
+POST http://localhost:3001/api/challenges/1/participations
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE3LCJpYXQiOjE3Mjk3NjI3MjAsImV4cCI6MTcyOTc2MzYyMH0.5o2CRN0jkyC4nd8N8vC1GcE9P3U7fnJ-mu1SOIbFyHE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE3LCJpYXQiOjE3Mjk4MTQ5OTMsImV4cCI6MTcyOTgxNTg5M30.6xQaWQPomjV0yangpXAJM0F_RPVPwGEpTZXqZKzwVaY
 
 ### 챌린지 포기
-DELETE  http://localhost:3001/api/challenges/60/participations
+DELETE  http://localhost:3001/api/challenges/4211/participations
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI0LCJpYXQiOjE3Mjk3NjE5NTIsImV4cCI6MTcyOTc2Mjg1Mn0.iuMqA_951ExE05uMvkLoSZkNf5W4VfBMIPEudEk1TBU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE3LCJpYXQiOjE3Mjk4MTQ5OTMsImV4cCI6MTcyOTgxNTg5M30.6xQaWQPomjV0yangpXAJM0F_RPVPwGEpTZXqZKzwVaY
 
 
 ### 챌린지 생성

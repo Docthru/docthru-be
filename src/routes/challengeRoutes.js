@@ -363,6 +363,30 @@ router.post(
  */
 router.delete('/:challengeId/cancel', authenticateAccessToken, cancelChallenge);
 
+/**
+ * @swagger
+ * /api/challenges/{challengeId}/participations:
+ *   delete:
+ *     tags: [Challenge]
+ *     summary: 챌린지 포기
+ *     security:
+ *       - bearerAuth: []
+ *     description: 사용자가 챌린지에 포기합니다.
+ *     parameters:
+ *       - in: path
+ *         name: challengeId
+ *         required: true
+ *         description: 챌린지 ID
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       201:
+ *         description: 챌린지 포기 성공
+ *       404:
+ *         description: 챌린지가 없습니다, 마감 된 챌린지 입니다
+ *       500:
+ *         description: 서버 오류
+ */
 router.delete(
   '/:challengeId/participations',
   authenticateAccessToken,
